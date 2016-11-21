@@ -1,0 +1,46 @@
+<?php
+
+/* Created by John Enrick Pleños */
+class FE_Controller extends CI_Controller{
+    public function __construct() {
+        parent::__construct();
+        $this->load->model("api/m_account");
+        $this->load->model("api/m_change_log");
+        //sleep(5);
+    }
+    public function loadPage($bodyLink, $bodyScriptLink, $data = array()){
+        
+       $this->load->view("portal/header", $data);
+       $this->load->view($bodyLink);
+       $this->load->view("portal/footer");
+       
+       $this->load->view("portal/header_page_script");
+       
+       $this->load->view("portal/footer_script");
+	   $this->load->view($bodyScriptLink);
+       
+    }
+    public function generateResponse($data = false, $error = array()){
+        return array(
+            "data" => $data,
+            "error" => $error
+        );
+    }
+    public function retrieveModuleLinks(){
+        $response = $this->generateResponse();
+        if(user_id()){
+        //Student Account Management
+        $response["header"] = array(
+            
+        );
+        //Section Management
+        
+        }else{
+            $response["error"][] = array("status" => 1, "error" => "Not Authorized");
+        }
+        
+        echo json_encode($response);
+    }
+            
+}
+

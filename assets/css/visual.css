@@ -1,0 +1,185 @@
+/* clear fix */
+.clearfix:after{
+	visibility: hidden;
+	display: block;
+	content: "";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+/* TRANSITION */
+.animate{
+   -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+.animateFast{
+   -webkit-transition: all .15s ease-in-out;
+  -moz-transition: all .15s ease-in-out;
+  -o-transition: all .15s ease-in-out;
+  transition: all .15s ease-in-out;
+}
+.animateSlow{
+   -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.animateColor{
+   -webkit-transition: color .17s linear;
+  -moz-transition: color .17s linear;
+  -o-transition: color .17s linear;
+  transition: color .17s linear;
+}
+.animateBGColor{
+   -webkit-transition: background-color .17s linear;
+  -moz-transition: background-color .17s linear;
+  -o-transition: background-color .17s linear;
+  transition: background-color .17s linear;
+}
+.animateAlpha{
+   -webkit-transition: opacity .17s linear;
+  -moz-transition: opacity .17s linear;
+  -o-transition: opacity .17s linear;
+  transition: opacity .17s linear;
+}
+
+/* BOX SHADOW */
+.box-shadow {
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.5); /* Safari, Chrome */
+  	 -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.5); /* Firefox */
+  		  box-shadow: 1px 1px 3px rgba(0,0,0,.5); /* CSS3 */
+}
+.box-shadow2 {
+  -webkit-box-shadow: 1px 1px 20px rgba(0,0,0,.5); /* Safari, Chrome */
+  	 -moz-box-shadow: 1px 1px 20px rgba(0,0,0,.5); /* Firefox */
+  		  box-shadow: 1px 1px 20px rgba(0,0,0,.5); /* CSS3 */
+}
+.box-shadow3 {
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.2); /* Safari, Chrome */
+  	 -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.2); /* Firefox */
+  		  box-shadow: 1px 1px 3px rgba(0,0,0,.2); /* CSS3 */
+}
+.box-shadowIn {
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.5) inset; /* Safari, Chrome */
+  	 -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.5) inset; /* Firefox */
+  		  box-shadow: 1px 1px 3px rgba(0,0,0,.5) inset; /* CSS3 */
+}
+.box-shadowFlat {
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.2); /* Safari, Chrome */
+  	 -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.2); /* Firefox */
+  		  box-shadow: 0px 0px 5px rgba(0,0,0,.2); /* CSS3 */
+}
+.box-shadowFlatIn {
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3) inset; /* Safari, Chrome */
+  	 -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3) inset; /* Firefox */
+  		  box-shadow: 0px 0px 5px rgba(0,0,0,.3) inset; /* CSS3 */
+}
+
+/* border radius */
+.border-radius10 {
+  -webkit-border-radius: 10px;
+	 -moz-border-radius: 10px;
+		  border-radius: 10px;
+}
+.border-radius8 {
+  -webkit-border-radius: 8px;
+	 -moz-border-radius: 8px;
+		  border-radius: 8px;
+}
+.border-radius6 {
+  -webkit-border-radius: 6px;
+	 -moz-border-radius: 6px;
+		  border-radius: 6px;
+}
+.border-radius4 {
+  -webkit-border-radius: 4px;
+	 -moz-border-radius: 4px;
+		  border-radius: 4px;
+}
+.border-radius2 {
+  -webkit-border-radius: 2px;
+	 -moz-border-radius: 2px;
+		  border-radius: 2px;
+}
+
+/* OPACITY */
+.opacity50{
+	-webkit-opacity: 0.5;
+	-moz-opacity: 0.5;
+	filter:alpha(opacity=50);
+	opacity: 0.5;
+}
+.opacity70{
+	-webkit-opacity: 0.7;
+	-moz-opacity: 0.7;
+	filter:alpha(opacity=70);
+	opacity: 0.7;
+}
+.opacity80{
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=80);
+	opacity: 0.8;
+}
+.opacity90{
+	-webkit-opacity: 0.9;
+	-moz-opacity: 0.9;
+	filter:alpha(opacity=90);
+	opacity: 0.9;
+}
+.opacity95{
+	-webkit-opacity: 0.95;
+	-moz-opacity: 0.95;
+	filter:alpha(opacity=95);
+	opacity: 0.95;
+}
+
+/* FONT SIZE */
+.font8{
+	font-size:8px;	
+}
+.font10{
+	font-size:10px;	
+}
+.font11{
+	font-size:11px;	
+}
+.font12{
+	font-size:12px;	
+}
+
+
+/* text */
+.ellipsis{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* circle */
+.circle{
+	border-radius:500px;
+	overflow:hidden;
+}
+
+.textShadow{
+	text-shadow: 1px 1px 0 rgba(0,0,0,.5);	
+}
+.textShadowInv{
+	text-shadow: -1px -1px 0 rgba(0,0,0,.5);	
+}
+.textShadowWhite{
+	text-shadow: 1px 1px 0 rgba(255,255,255,.5);	
+}
+
+
+/* box-sizing- */
+.box-sizing{
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}

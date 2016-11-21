@@ -1,0 +1,10 @@
+1. Ledger
+	- duplicate, and no entrance fee
+2. Comma in Receipt, number to text
+	- update teller_transaction_script
+	
+3. No Section
+	- update class_section api
+	- update class_section_management module
+
+4. Sayop nga print sa ID

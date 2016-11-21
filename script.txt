@@ -1,0 +1,24 @@
+UPDATE `student_excel_dummy` SET `last_name` = replace(`student_excel_dummy`.`last_name`, "?", "Ñ"), `first_name` = replace(`student_excel_dummy`.`first_name`, "?", "Ñ");
+
+update `student_excel_dummy` left join `account_basic_information`
+	on `account_basic_information`.`first_name` LIKE concat('%',`student_excel_dummy`.`first_name`,'%')
+    and `account_basic_information`.`last_name` LIKE concat('%',`student_excel_dummy`.`last_name`,'%')
+set `student_excel_dummy`.`account_ID` = `account_basic_information`.`account_ID`
+where `student_excel_dummy`.`account_ID`=0;
+
+INSERT INTO `class_section` (`section_ID`, `account_ID`,`school_year`) 
+( select  `student_excel_dummy`.`section_ID`, `student_excel_dummy`.`account_ID`, 1428336000 FROM `student_excel_dummy` where `student_excel_dummy`.`account_ID` > 0 );
+
+INSERT INTO `account_level` (`account_ID`, `course_ID`, `year_level`, `academic_year`, `grade`) 
+( select `student_excel_dummy`.`account_ID`,  1, `student_excel_dummy`.`grade`, 1428336000, 0 FROM `student_excel_dummy` where `student_excel_dummy`.`account_ID` > 0 );
+
+
+update `account_level` set `account_level`.`academic_year`=1428336000;
+update `class_section` set `class_section`.`school_year`=1428336000;
+update `course_annual_fee` set `course_annual_fee`.`academic_year`=1428336000;
+update `section` set `section`.`school_year`=1428336000;
+update `subject_schedule` set `subject_schedule`.`school_year`=1428336000;
+update `course_annual_fee` set `course_annual_fee`.`academic_year`=1428336000;
+update `course_annual_fee` set `course_annual_fee`.`academic_year`=1428336000;
+update `student_grade` set `student_grade`.`school_year`=1428336000;
+

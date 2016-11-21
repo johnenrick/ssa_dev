@@ -1,0 +1,17 @@
+1 - c_access_control_list
+2 - c_account
+3 - c_account_level
+4 - c_account_payment
+5 - c_account_school_history
+6 - c_assessment_item
+7 - c_assessment_type
+8 - c_class_section
+9 - c_club
+10 - c_course
+11 - c_course_annual_fee
+12 - c_general_ledger
+13 - c_maintainable
+14 - c_room
+15 - c_schedule
+16 - c_section
+17 - c_subject
