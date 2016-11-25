@@ -27,7 +27,7 @@ class c_account_payment extends API_Controller{
             $this->form_validation->set_rules('mode', 'Mode', 'required');
             $this->form_validation->set_rules('total_amount', 'Total Amount', 'required');
             if($this->form_validation->run() && $this->input->post("payment_assessment_item")){
-                
+               
                 $currentTime = time();
                 $result = $this->m_account_payment->createAccountPayment(
                         $this->input->post("order_receipt_number"),

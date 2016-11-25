@@ -268,7 +268,6 @@ $(document).ready(function(){
         };
         
         $.post(systemApplication.url.apiUrl+"c_course_annual_fee/createCourseAnnualFeeSelectedAccount", newData, function(data){
-            console.log(newData);
             var response = JSON.parse(data);
             if(!response["error"].length){
                 selectedRow.find(".tellerTransactionAdjustmentListSelectAction").hide();
@@ -458,7 +457,6 @@ tellerTransaction.showAccountStatement = function(accountID){
     dataFilter.ledger_assessment_type_ID = 133;//tuition only
     $.post(systemApplication.url.apiUrl+"c_course_annual_fee/retrieveAccountStatement", dataFilter, function(data){
         var response = JSON.parse(data);
-        console.log(response);
         if(!response["error"].length){
             var totalAccountStatementListAmount = 0;
             var total2 = 0;
@@ -467,7 +465,6 @@ tellerTransaction.showAccountStatement = function(accountID){
                 totalAccountStatementListAmount += response["data"]["general_fee"][x]["amount"]*1;
                 total2+=response["data"]["general_fee"][x]["amount"]*1;
             }
-            console.log(total2);
             //selected
             if(response["data"]["adjustment_fee"]){
                 for(var x = 0; x < response["data"]["adjustment_fee"].length;x++){
@@ -857,6 +854,7 @@ tellerTransaction.retrieveParticular = function(old){
 tellerTransaction.refreshTransaction = function(){
     tellerTransaction.particularRemoveList = [];
     var currentDate = new Date();
+    $("#tellerTransactionAcademicYear").val(systemUtility.getCurrentAcademicYear())
     $("#tellerTransactionDatetime").val(currentDate.getFullYear() +"-"+ systemUtility.pad(currentDate.getMonth()+1, 2)+"-"+currentDate.getDate());
     $("#tellerTransactionPayerIdentificationNumber").text("Select Payer");
     $("#tellerTransactionPayerIdentificationNumber").attr("account_id", 0);
