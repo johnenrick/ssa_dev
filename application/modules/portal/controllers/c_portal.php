@@ -40,6 +40,8 @@ class c_portal extends FE_Controller {
                     $response["data"] = base_url()."subject/c_subject/classList";
                 }else if(user_type() == 8){
                     $response["data"] = base_url()."teller/c_teller/fixTransaction";
+                }else if(user_type() == 9){
+                    $response["data"] = base_url()."guidance/c_guidance/portalReport";
                 }else{
                     $response["data"] = base_url();
                 }
@@ -75,7 +77,7 @@ class c_portal extends FE_Controller {
             $this->loadPage("portal/student_information", "portal/student_information_script", false);
     }
     public function registration(){
-        if(user_type() == 3){
+        if(user_type() == 3 || user_type() == 7){
             $this->loadPage("portal/registration", "portal/registration_script", false);
         }else{
             header("Location: ".base_url());

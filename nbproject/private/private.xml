@@ -3,23 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/subject/views/grading_system_script.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/teller_transaction.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/account_statement.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/library/views/borrowed_material.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/report/views/finance/account_payment_summary.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/controllers/c_account_payment.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/controllers/c_circulation.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/section/views/class_section_management.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/models/m_class_section.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/controllers/c_class_section.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/account_statement_script.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/teller_transaction_script.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/report/views/finance/payment_history.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/payment_report_script.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/subject/views/grading_system.php</file>
+            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/no_account_payee.php</file>
+            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/guidance/views/portal_report_script.php</file>
+            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/no_account_payee_script.php</file>
+            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/guidance/views/portal_report.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/assets/js/tableAPIPagination.js</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/models/m_circulation.php</file>
+            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/controllers/c_student_attendance.php</file>
         </group>
     </open-files>
 </project-private>

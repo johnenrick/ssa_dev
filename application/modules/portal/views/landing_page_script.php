@@ -1,5 +1,10 @@
 <script>
+    /*global systemApplication*/
     $(document).ready(function(){
+        if(systemApplication.userInformation.userID){
+            $("#logInAccountForm").parent().hide();
+            $("#userLoggedInInformation span").text(systemApplication.userInformation.lastName);
+        }
         $("#logInAccountForm").ajaxForm({
             beforeSubmit : function(){
                 $("#logInButton").button("loading");

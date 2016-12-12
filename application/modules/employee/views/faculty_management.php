@@ -38,7 +38,7 @@
                                                         <option value="6">Faculty</option>
                                                         <option value="7">Librarian</option>
                                                         <option value="8">Non Teaching Staff</option>
-                                                        <option value="8">Guidance</option>
+                                                        <option value="9">Guidance</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -176,6 +176,7 @@
                             <option value="6">Faculty</option>
                             <option value="7">Librarian</option>
                             <option value="8">IT</option>
+                            <option value="9">Guidance</option>
                         </select>
                     </th>
                     <th>

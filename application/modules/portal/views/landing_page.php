@@ -7,7 +7,6 @@
         <p>
             Please enter your user name and password.
         </p>
-
         <form id="logInAccountForm" action="<?=base_url()?>portal/c_portal/logInAccount" method="POST">
             <div>
                 <legend>Account&nbsp;Information</legend>
@@ -22,6 +21,10 @@
                 <button type="submit" id="logInButton" class="btn btn-primary">Log on</button>
             </div>
         </form>
+    </div>
+    <div id="userLoggedInInformation" class="col-md-3 ">
+        <p>You are logged in as <span style="color:blue"></span>.</p>
+        
     </div>
     <div class="col-md-9">
         <div class="jumbotron">
