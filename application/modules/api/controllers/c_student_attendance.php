@@ -67,6 +67,7 @@ class c_student_attendance extends API_Controller{
             );
         if($result){
             $response["data"] = $result;
+            $response["result_count"] = count($result);
         }else{
             $response["error"][] = array(
                   "status" => 3,

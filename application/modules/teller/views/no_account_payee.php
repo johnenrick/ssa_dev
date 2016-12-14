@@ -13,20 +13,20 @@
 <div class="row" >
     <div class="col-md-12">
         <div id="noAccountPayeeListTablePrint">
-        <table class="table table-hover" id="noAccountPayeeListTable">
-            <thead>
-                <tr>
-                    <th>OR #</th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
-                    <th>Middle Name</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-            <tfoot >
-            </tfoot>
-        </table>
+            <table class="table table-hover" id="noAccountPayeeListTable">
+                <thead>
+                    <tr>
+                        <th>OR #</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot >
+                </tfoot>
+            </table>
         </div>
         <div class="modal fade" id="noAccountPayeeAccount" selection_mode="1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" style="font-size:14px">

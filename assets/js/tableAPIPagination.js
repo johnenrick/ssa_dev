@@ -53,7 +53,9 @@
                 filterHead.find(".tp_filterOptions").append(filterOptionString);
                 filterHead.find(".tp_filterOptions").children().last().find("label").text(settings.tableFilter[thIndex]);
                 filterHead.find(".tp_filterOptions").children().last().find("input").attr("placeholder",settings.tableFilter[thIndex]).attr("name",thIndex);
-                
+                if(thIndex.indexOf("datetime") !== -1){
+                    filterHead.find(".tp_filterOptions").children().last().find("input").attr("type", "date");
+                }
             }
             filterHead.find(".tp_filterOptions").keydown(function(e){
                if(e.keyCode === 13){
@@ -81,11 +83,11 @@
         selectedTable.find("tfoot").append("<tr></tr>");
         var pageNav = selectedTable.find("tfoot tr:last-child");
         pageNav.append(
-                "<td style='font-size:13px;font-weight:bold' ><span class='tp_totalResult' >0</span> Results</td>" +
-                "<td style='text-align:center;'  colspan='"+(thead.find("th").length-2)+"' ><button class='tp_previousPage "+settings.tableStyle.btnNavClass+"' >Previous</button> <button class='tp_nextPage "+settings.tableStyle.btnNavClass+"' >Next</button> </td>"+
-                "<td>Page <span class='tp_currentPage'>0</span> of <span class='tp_totalPage'>0</span></td>"   
+                "<td style='font-size:13px;font-weight:bold' ><span class='tp_totalResult' >0</span> Results</td>" + 
+                    ((settings.pageLimit !== null) ?(
+                        "<td style='text-align:center;'  colspan='"+(thead.find("th").length-2)+"' ><button class='tp_previousPage "+settings.tableStyle.btnNavClass+"' >Previous</button> <button class='tp_nextPage "+settings.tableStyle.btnNavClass+"' >Next</button> </td>" +
+                        "<td>Page <span class='tp_currentPage'>0</span> of <span class='tp_totalPage'>0</span></td>") : ""  )
                 );
-        
         /*Events*/
         //filter
         selectedTable.find(".tp_openFilter").click(function(){

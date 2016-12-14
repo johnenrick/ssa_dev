@@ -44,11 +44,10 @@ $(document).ready(function(){
             uid = resp.substr(0, resp.length - 4);
 
             if(uid){
-                action = (reader.name.replace(/\s/g, "").toLowerCase()=="acsacr1220")?"out":"in";
+                action = (reader.name.replace(/\s/g, "").toLowerCase()=="acsacr1220")?"in":"out";
                 $.post("<?=  api_url()?>c_circulation/retrieveDisplayStudent",{uid:uid,location:"gate-portal",action:action},function(data){
                     
                     var response = JSON.parse(data);
-                    console.log(response)
                     if(!response["error"].length){
                         $("#"+action+" .name").css("color","");
                         $("#"+action+" .img").attr('src',img_url+response['data']['identification_number']+".jpg");
