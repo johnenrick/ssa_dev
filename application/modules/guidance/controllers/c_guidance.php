@@ -19,5 +19,12 @@ class c_guidance extends FE_Controller {
             header("Location: ".base_url());
         }
     }
+    public function studentAttendance(){
+        if(user_type() == 9){
+            $this->loadPage("student_attendance", "student_attendance_script", false);
+        }else{
+            header("Location: ".base_url());
+        }
+    }
     
 }

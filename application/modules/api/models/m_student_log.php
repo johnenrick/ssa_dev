@@ -27,22 +27,22 @@ class m_student_log  extends CI_Model{
         $this->db->flush_cache();
         $this->db->_protect_identifiers=false;
         $this->db->select("*");
-        $this->db->select("student_log.ID, CONCAT(account_basic_information.first_name, account_basic_information.middle_name, account_basic_information.last_name) AS account_full_name");
+        $this->db->select("student_log.ID, CONCAT(account_basic_information.first_name, ' ', account_basic_information.middle_name, '  ', account_basic_information.last_name) AS account_full_name");
         $this->db->join("account_basic_information ", "account_basic_information.account_ID=student_log.account_ID", "left");
         $condition = array();
         $likeCondition = array();
-        ($location != NULL) ? $condition["student_log.account_ID"] = $location : null;
+        ($location != NULL) ? $condition["student_log.location"] = $location : null;
         ($ID) ? $condition["student_log.ID"] = $ID : null;
         ($accountID) ? $condition["student_log.account_ID"] = $accountID : null;
         ($inOut) ? $condition["student_log.in_out"] = $inOut : null;
         
-        ($startDatetime) ? $condition["student_log.datetime >="] = $startDatetime : null;
-        ($endDatetime) ? $condition["student_log.datetime <="] = strtotime("+1 day", $endDatetime) : null;
+        ($startDatetime) ? $condition["student_log.datetime >="] = date("Y-m-d 00:00:00", $startDatetime) : null;
+        ($endDatetime) ? $condition["student_log.datetime <"] = date("Y-m-d 00:00:00", strtotime("+1 day", $endDatetime)) : null;
         
         if($accountName != NULL){
             $explodedName = explode(" ", $accountName);
             for($x = 0; $x < count($explodedName); $x++){
-                $likeCondition["account_full_name"] = $explodedName[$x];
+                $likeCondition["CONCAT(account_basic_information.first_name, account_basic_information.middle_name, account_basic_information.last_name)"] = $explodedName[$x];
             }
         }
         (count($condition) > 0) ? $this->db->where($condition) : null;

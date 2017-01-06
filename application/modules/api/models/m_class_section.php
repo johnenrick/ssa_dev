@@ -21,9 +21,10 @@ class m_class_section  extends CI_Model{
         $this->db->stop_cache();
         return $ID; 
     }
-    function retrieveClassSection($retrieveType = false, $limit = false, $offset = 0, $ID = false, $sectionID = false, $accountID = false, $schoolYear = false, $sort = false, $fullName = NULL, $yearLevel = NULL){ //retrieveType: 0 - normal, 1 - search
+    function retrieveClassSection($retrieveType = false, $limit = false, $offset = 0, $ID = false, $sectionID = false, $accountID = false, $schoolYear = false, $sort = false, $fullName = NULL, $yearLevel = NULL, $sectionDescription = NULL){ //retrieveType: 0 - normal, 1 - search
         $this->db->start_cache();
         $this->db->flush_cache();
+        $this->db->_protect_identifiers=false;
         $this->db->select("*");
         $this->db->select("class_section.ID, class_section.school_year, account_level.year_level, section.description AS section_description");
         $this->db->join("course", "course.ID = class_section.section_ID", "left");
@@ -33,20 +34,16 @@ class m_class_section  extends CI_Model{
         $condition = array();
         $likeCondition = array();
         ($yearLevel) ? $condition["section.year_level"] = $yearLevel : null;
+        ($sectionDescription) ? $likeCondition["section.description"] = $sectionDescription : null;
         if(!$retrieveType){
             ($ID) ? $condition["class_section.ID"] = $ID : null;
             ($sectionID) ? $condition["class_section.section_ID"] = $sectionID : null;
             ($accountID) ? $condition["class_section.account_ID"] = $accountID : null;
             ($schoolYear) ? $condition["class_section.school_year"] = $schoolYear : null;
-            
-            
         }else{
-            ($ID) ? $likeCondition["class_section.ID"] = $ID : null;
             ($sectionID) ? $likeCondition["class_section.section_ID"] = $sectionID : null;
             ($accountID) ? $likeCondition["class_section.account_ID"] = $accountID : null;
             ($schoolYear) ? $likeCondition["class_section.school_year"] = $schoolYear : null;
-            
-            
         }
         (count($condition) > 0) ? $this->db->where($condition) : null;
         (count($likeCondition) > 0) ? $this->db->like($likeCondition) : null;
@@ -69,8 +66,8 @@ class m_class_section  extends CI_Model{
         ($limit)?$this->db->limit($limit, $offset):0;
         $this->db->order_by("class_section.section_ID", "asc");
         $this->db->order_by("account_basic_information.last_name", "asc");
-		$this->db->order_by("account_basic_information.first_name", "asc");
-		$this->db->order_by("account_basic_information.middle_name", "asc");
+        $this->db->order_by("account_basic_information.first_name", "asc");
+        $this->db->order_by("account_basic_information.middle_name", "asc");
         $result = $this->db->get("class_section");
         $this->db->flush_cache();
         $this->db->stop_cache();

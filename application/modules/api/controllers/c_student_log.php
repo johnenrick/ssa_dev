@@ -73,8 +73,8 @@ class c_student_log extends API_Controller{
         $response = $this->generateResponse();
         $startDatetime = $this->input->post("start_datetime");
         $endDatetime = $this->input->post("end_datetime");
-        $response["debug"][] = $startDatetime;
-        $response["debug"][] = strtotime("+1 day", $endDatetime);
+        $response["debug"][] = date("Y-m-d 00:00:00", $startDatetime);
+        $response["debug"][] = date("Y-m-d 00:00:00", strtotime("+1 day", $endDatetime));
         $result = $this->m_student_log->retrieveStudentLog(
                 $this->input->post("retrieve_type"), // 1 - search, 0 - match
                 $this->input->post("limit"),
@@ -88,6 +88,10 @@ class c_student_log extends API_Controller{
                 $this->input->post("account_name")
                 );
         if($this->input->post("limit")){
+            
+        }
+        if($result){
+            $response["data"] = $result;
             $response["result_count"] = count($this->m_student_log->retrieveStudentLog( 
                 $this->input->post("retrieve_type"), // 1 - search, 0 - match
                 NULL,
@@ -100,10 +104,8 @@ class c_student_log extends API_Controller{
                 $this->input->post("location"),
                 $this->input->post("account_name")
             ));
-        }
-        if($result){
-            $response["data"] = $result;
         }else{
+            $response["result_count"] = 0;
             $response["error"][] = array(
                   "status" => 3,
                   "message" => "No result"
