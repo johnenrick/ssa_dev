@@ -92,7 +92,8 @@ class c_class_section extends API_Controller{
                 $this->input->post("school_year"),
                 $this->input->post("sort"),
                 $this->input->post("full_name"),
-                $this->input->post("year_level")
+                $this->input->post("year_level"),
+                $this->input->post("section_description")
                 );
         if($result){
             $response["data"] = $result;
@@ -107,7 +108,8 @@ class c_class_section extends API_Controller{
                     $this->input->post("school_year"),
                     false,
                     $this->input->post("full_name"),
-                    $this->input->post("year_level")
+                    $this->input->post("year_level"),
+                    $this->input->post("section_description")
                 ));
             }
         }else{

@@ -46,7 +46,7 @@
                     '<div class="dropdown-menu panel-body tp_filterPanel" style="width:400px">'+
                     '<div class="row"><form class="form-horizontal"><div class="col-md-12 tp_filterOptions"></div></form></div><div class="row"><div class="col-md-12" style="text-align:center"><button class="btn btn-primary tp_startFilter"><span class="glyphicon glyphicon-filter"></span>Filter Search</button> <button class="btn btn-default tp_closeFilter"><span class="glyphicon glyphicon-remove "></span>Close</button></div></div>' 
                     );
-            var filterOptionString = '<div class="form-group"><label class="col-sm-5 control-label">Option One</label><div class="col-md-7"><input  class="form-control" type="text"></div></div>';
+            var filterOptionString = '<div class="form-group"><label class="col-sm-5 control-label">Option One</label><div class="col-sm-7"><input  class="form-control" type="text"></div></div>';
            
             for(var thIndex in settings.tableFilter){
                 
