@@ -785,6 +785,8 @@ tellerTransaction.finishTransaction = function(){
                 }else{
                      $("#tellerTransactionCancelModifyTransaction").trigger("click");
                 }
+                $("#tellerTransactionUserSelectionListBody").empty();
+                
             }else{
                 systemUtility.showErrorMessage( "#tellerTransactionMessage", response["error"]);
             }
