@@ -129,6 +129,12 @@
             label : "2017-18"
         }
     ];
+    systemApplication.academic_year_label = {
+        1396828800 : "2014-15",
+        1428336000 : "2015-16",
+        1459958400 : "2016-17",
+        1491523200 : "2017-18"
+    };
     /***
     * Append list of academic years
 
