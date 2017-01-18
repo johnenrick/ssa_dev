@@ -31,18 +31,25 @@
                 end_datetime : (new Date("20"+year[1], 4, 0, 23,59,0)).getTime()/1000,//april last day pm
                 account_ID: $(this).attr("account_ID")
             };
+            $("#studentAttendanceModal .monthlyAttendance .panel-body .row").empty();
+            
             $.post(systemApplication.url.apiUrl + "c_student_log/retrieveStudentLog", filter, function(data){
                 var response = JSON.parse(data);
                 console.log(response);
                 if(!response["error"].length){
                     for(var x = 0; x < response["data"].length; x++){
                         var log = new Date(response["data"][x]["datetime"]);
-                        
                         var monthly = $("#studentAttendanceModal .monthlyAttendance[month="+(log.getMonth()+1)+"]");
                         var daily = (monthly.find(".dailyAttendance[day="+log.getDate()+"]").length) ?  monthly.find(".dailyAttendance[day="+log.getDate()+"]") : ($(".prototype .dailyAttendance").clone());
                         console.log(monthly.find(".dailyAttendance[day="+log.getDate()+"]"));
                         daily.attr("day", log.getDate());
-                        daily.find("day").text(log.getDate())
+                        daily.find(".day").text(log.getDate());
+                        
+                        var inout = (response["data"][x]["in_out"]*1 === 1) ? ".in" : ".out";
+                        if(daily.find(inout).text() === "none"){
+                            daily.find(inout).text("");
+                        }
+                        daily.find(inout).append((daily.find(inout).text() !== "" ? "<br>":"" )+systemUtility.formatAMPM(log));
                         monthly.find(".panel-body .row").append(daily);
                     }
                 }

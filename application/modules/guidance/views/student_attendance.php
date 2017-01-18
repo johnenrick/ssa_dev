@@ -123,10 +123,11 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <div class="prototype" style="display:none">
-    <div class="col-xs-4 dailyAttendance">
+    <div class="col-xs-3 dailyAttendance">
         <span><strong class="day"></strong></span>
-        <span class="text-info in"></span>
-        <span class="text-warning out"></span>
+        <br>
+        <div class="text-info in" style="width:49%; float:left">none</div>
+        <div class="text-warning out" style="width:49%; float:left">none</div>
     </div>
     <table>
         <tr class="studentAttendanceRow">
