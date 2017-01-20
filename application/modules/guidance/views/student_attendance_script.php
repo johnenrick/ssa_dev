@@ -35,13 +35,11 @@
             
             $.post(systemApplication.url.apiUrl + "c_student_log/retrieveStudentLog", filter, function(data){
                 var response = JSON.parse(data);
-                console.log(response);
                 if(!response["error"].length){
                     for(var x = 0; x < response["data"].length; x++){
                         var log = new Date(response["data"][x]["datetime"]);
                         var monthly = $("#studentAttendanceModal .monthlyAttendance[month="+(log.getMonth()+1)+"]");
                         var daily = (monthly.find(".dailyAttendance[day="+log.getDate()+"]").length) ?  monthly.find(".dailyAttendance[day="+log.getDate()+"]") : ($(".prototype .dailyAttendance").clone());
-                        console.log(monthly.find(".dailyAttendance[day="+log.getDate()+"]"));
                         daily.attr("day", log.getDate());
                         daily.find(".day").text(log.getDate());
                         
