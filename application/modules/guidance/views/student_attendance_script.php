@@ -53,7 +53,27 @@
                 }
             });
         });
-        
+        $("#openAttendanceSummary").click(function(){
+            $("#attendanceSummaryModal").modal("show");
+            var filter = {
+                school_year : systemUtility.getCurrentAcademicYear()
+            };
+            ($("input[name=account_name]").val() !== "") ? filter.account_name = $("input[name=account_name]").val() : null;
+            ($("input[name=year_level]").val() !== "") ? filter.year_level = $("input[name=year_level]").val() : null;
+            ($("input[name=section_description]").val() !== "") ? filter.section_description = $("input[name=section_description]").val() : null;
+            $("#exportAttendance").hide();
+            $("#attendanceSummaryTable tbody").empty();
+            $.post(systemApplication.url.apiUrl + "c_class_section/retrieveClassSection", filter,function(data){
+                var response = JSON.parse(data);
+                if(!response["error"].length){
+                    
+                }
+            })
+        });
+        $("#exportAttendance").click(function(){
+            var filename = $("#studentAttendanceTable tbody tr:first-child td:last-child").text();
+            systemUtility.exportTable("attendanceSummaryTable", filename);
+        });
     });
     studentAttendance.showPortalReport = function(response){
        
@@ -66,6 +86,9 @@
                 row.find(".accountSection").text(response["data"][x]["section_description"]);
                 $("#studentAttendanceTable tbody").append(row);
             }
+            $("#openAttendanceSummary").show();
+        }else{
+            $("#openAttendanceSummary").hide();
         }
     };
 </script>

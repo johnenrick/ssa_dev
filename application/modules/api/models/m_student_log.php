@@ -22,7 +22,7 @@ class m_student_log  extends CI_Model{
         $this->db->stop_cache();
         return $ID; 
     }
-    function retrieveStudentLog($retrieveType = false, $limit = false, $offset = 0, $ID = false, $accountID = false, $startDatetime = false, $endDatetime = false, $inOut = false, $location = NULL, $accountName = NULL){ //retrieveType: 0 - normal, 1 - search
+    function retrieveStudentLog($retrieveType = false, $limit = false, $offset = 0, $ID = false, $accountID = false, $startDatetime = false, $endDatetime = false, $inOut = false, $location = NULL, $accountName = NULL, $blockStudentID = NULL){ //retrieveType: 0 - normal, 1 - search
         $this->db->start_cache();
         $this->db->flush_cache();
         $this->db->_protect_identifiers=false;
@@ -45,6 +45,7 @@ class m_student_log  extends CI_Model{
                 $likeCondition["CONCAT(account_basic_information.first_name, account_basic_information.middle_name, account_basic_information.last_name)"] = $explodedName[$x];
             }
         }
+        ($blockStudentID) ? $this->db->where_in($blockStudentID) : null;
         (count($condition) > 0) ? $this->db->where($condition) : null;
         (count($likeCondition) > 0) ? $this->db->like($likeCondition) : null;
         ($limit)?$this->db->limit($limit, $offset):0;

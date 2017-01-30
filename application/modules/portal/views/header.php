@@ -25,7 +25,7 @@
     
     <script src="<?php echo load_asset("js/jquery.form.min.js");?>"></script>
     <script src="<?=load_asset()?>js/jquery-confirm.js"></script>
-	<link href="<?=load_asset()?>css/jquery-confirm.css" rel="stylesheet">
+    <link href="<?=load_asset()?>css/jquery-confirm.css" rel="stylesheet">
 
 </head>
 

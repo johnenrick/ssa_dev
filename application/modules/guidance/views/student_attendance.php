@@ -2,6 +2,9 @@
 <h1>Student Attendance</h1>
 <div class="row">
     <div class="col-sm-12">
+        <button id="openAttendanceSummary" class="btn btn-success pull-right"><span class="glyphicon glyphicon-export"></span> Export Attendance Summary</button>
+    </div>
+    <div class="col-sm-12">
         <table id="studentAttendanceTable" class="table table-hover" >
             <thead>
                 <tr>
@@ -15,6 +18,77 @@
             <tfoot >
             </tfoot>
         </table>
+    </div>
+</div>
+<div id="attendanceSummaryModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Student Attendance Summary</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button id="exportAttendance" class="btn btn-success pull-right"><span class="glyphicon glyphicon-export"></span> Export to Excel</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="attendanceSummaryTable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Name</th>
+                                    <th>Jun</th>
+                                    <th>Jul</th>
+                                    <th>Aug</th>
+                                    <th>Sep</th>
+                                    <th>Oct</th>
+                                    <th>Nov</th>
+                                    <th>Dec</th>
+                                    <th>Jan</th>
+                                    <th>Feb</th>
+                                    <th>Mar</th>
+                                    <th>Apr</th>                           
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cruz</td>
+                                    <td>, Juan D.</td>
+                                    <td>2</td>
+                                    <td>23</td>
+                                    <td>32</td>
+                                    <td>2</td>
+                                    <td>12</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>20</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>PATINDOL</td>
+                                    <td>, SAMANTHA SHANE N.</td>
+                                    <td>21</td>
+                                    <td>23</td>
+                                    <td>32</td>
+                                    <td>21</td>
+                                    <td>12</td>
+                                    <td>21</td>
+                                    <td>30</td>
+                                    <td>14</td>
+                                    <td>22</td>
+                                    <td>20</td>
+                                    <td>22</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
     </div>
 </div>
 <div id="studentAttendanceModal" class="modal fade" tabindex="-1" role="dialog">
