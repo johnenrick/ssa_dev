@@ -85,7 +85,8 @@ class c_student_log extends API_Controller{
                 $endDatetime,
                 $this->input->post("in_out"),
                 $this->input->post("location"),
-                $this->input->post("account_name")
+                $this->input->post("account_name"),
+                $this->input->post("block_student_ID")
                 );
         if($this->input->post("limit")){
             

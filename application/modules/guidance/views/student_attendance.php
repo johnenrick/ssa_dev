@@ -52,36 +52,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Cruz</td>
-                                    <td>, Juan D.</td>
-                                    <td>2</td>
-                                    <td>23</td>
-                                    <td>32</td>
-                                    <td>2</td>
-                                    <td>12</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>2</td>
-                                    <td>20</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>PATINDOL</td>
-                                    <td>, SAMANTHA SHANE N.</td>
-                                    <td>21</td>
-                                    <td>23</td>
-                                    <td>32</td>
-                                    <td>21</td>
-                                    <td>12</td>
-                                    <td>21</td>
-                                    <td>30</td>
-                                    <td>14</td>
-                                    <td>22</td>
-                                    <td>20</td>
-                                    <td>22</td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -208,6 +179,20 @@
             <td class="accountFullName"></td>
             <td class="accountGrade"></td>
             <td class="accountSection"></td>
+        </tr>
+        <tr class="attendanceSummaryTableRow">
+            <td class="lastName"></td>
+            <td class="firstName"></td>
+            <td class="month6">0</td>
+            <td class="month7">0</td>
+            <td class="month8">0</td>
+            <td class="month9">0</td>
+            <td class="month10">0</td>
+            <td class="month11">0</td>
+            <td class="month12">0</td>
+            <td class="month1">0</td>
+            <td class="month2">0</td>
+            <td class="month3">0</td>
         </tr>
     </table>
 </div>

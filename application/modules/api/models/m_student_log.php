@@ -45,7 +45,7 @@ class m_student_log  extends CI_Model{
                 $likeCondition["CONCAT(account_basic_information.first_name, account_basic_information.middle_name, account_basic_information.last_name)"] = $explodedName[$x];
             }
         }
-        ($blockStudentID) ? $this->db->where_in($blockStudentID) : null;
+        ($blockStudentID) ? $this->db->where_in("student_log.account_ID", $blockStudentID) : null;
         (count($condition) > 0) ? $this->db->where($condition) : null;
         (count($likeCondition) > 0) ? $this->db->like($likeCondition) : null;
         ($limit)?$this->db->limit($limit, $offset):0;

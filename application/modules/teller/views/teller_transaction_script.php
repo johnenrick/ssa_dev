@@ -439,6 +439,7 @@ tellerTransaction.showAccountStatement = function(accountID){
     $("#tellerTransactionAccountStatementButton").button("loading");
     $("#tellerTransactionAccountStatementTotalAmountPaid").text("0.00");
     $("#tellerTransactionAccountStatementTotalAnnualFee").text("0.00");
+    $("#tellerTransactionAccountStatementRefundAmount").text("0.00");
     $("#tellerTransactionAccountStatementTotalRemainingBalance").text("0.00");
     $("#tellerTransactionAccountStatementFullName").text($("#tellerTransactionPayeeFullName").text());
     var academicDate = new Date($("#tellerTransactionAcademicYear").val()*1000);
@@ -459,6 +460,7 @@ tellerTransaction.showAccountStatement = function(accountID){
         var response = JSON.parse(data);
         if(!response["error"].length){
             var totalAccountStatementListAmount = 0;
+            var totalRefundAmount = 0;
             var total2 = 0;
             //general
             for(var x = 0; x < response["data"]["general_fee"].length;x++){
@@ -468,11 +470,17 @@ tellerTransaction.showAccountStatement = function(accountID){
             //selected
             if(response["data"]["adjustment_fee"]){
                 for(var x = 0; x < response["data"]["adjustment_fee"].length;x++){
-                    totalAccountStatementListAmount += response["data"]["adjustment_fee"][x]["amount"]*1;
+                    
+                    if(response["data"]["adjustment_fee"][x]["assessment_item_ID"]*1 !== 248){
+                        totalAccountStatementListAmount += response["data"]["adjustment_fee"][x]["amount"]*1;
+                    }else{
+                        totalRefundAmount += response["data"]["adjustment_fee"][x]["amount"]*1;
+                    }
                 }
             }
             $("#tellerTransactionAccountStatementTotalAnnualFee").text(systemUtility.insertDecimalPoints((totalAccountStatementListAmount).toFixed(2)));
-            $("#tellerTransactionAccountStatementTotalRemainingBalance").text(($("#tellerTransactionAccountStatementTotalRemainingBalance").text()*1 + totalAccountStatementListAmount).toFixed(2));
+            $("#tellerTransactionAccountStatementRefundAmount").text(systemUtility.insertDecimalPoints((totalRefundAmount*-1).toFixed(2)));
+            $("#tellerTransactionAccountStatementTotalRemainingBalance").text(($("#tellerTransactionAccountStatementTotalRemainingBalance").text()*1 + totalAccountStatementListAmount + totalRefundAmount).toFixed(2));
             //ledger
             var totalAmountPaid = 0;
 			

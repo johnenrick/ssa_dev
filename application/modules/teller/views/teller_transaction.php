@@ -546,6 +546,13 @@
                                 <tr>
                                     <td></td>
                                     <td></td>
+                                    <td style="text-align:right;font-weight:bold">Refund Amount : </td>
+                                    <td id="tellerTransactionAccountStatementRefundAmount" style="text-align:right;font-weight:bold">0.00</td>
+                                
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
                                     <td style="text-align:right;font-weight:bold">Total Tuition Fee : </td>
                                     <td id="tellerTransactionAccountStatementTotalAnnualFee" style="text-align:right;font-weight:bold">0.00</td>
                                

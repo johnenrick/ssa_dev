@@ -193,9 +193,14 @@
                 <tr>
                     <td></td>
                     <td></td>
+                    <td style="text-align:right;">Refund Amount : </td>
+                    <td class="accountStatementAccountStatementRefundAmount" style="text-align:right;">0.00</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
                     <td style="text-align:right;">Total Tuition Fee : </td>
                     <td class="accountStatementAccountStatementTotalAnnualFee" style="text-align:right;">0.00</td>
-
                 </tr>
                 <tr >
                     <td></td>

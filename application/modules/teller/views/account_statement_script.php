@@ -193,6 +193,7 @@ accountStatement.addAccountStatement = function(accountID, fullName, academicYea
     var accountStatement = $(".prototype").find(".accountStatementAccountStatementRow").clone();
     accountStatement.find(".accountStatementAccountStatementGrade").text($("#accountStatementYearLevelFilter").val());
     accountStatement.find(".accountStatementAccountStatementSection").text(sectionDescription);
+    accountStatement.find(".accountStatementAccountStatementRefundAmount").text("0.00");
     accountStatement.find(".accountStatementAccountStatementTotalAmountPaid").text("0.00");
     accountStatement.find(".accountStatementAccountStatementTotalAnnualFee").text("0.00");
     accountStatement.find(".accountStatementAccountStatementTotalRemainingBalance").text("0.00");
@@ -200,6 +201,7 @@ accountStatement.addAccountStatement = function(accountID, fullName, academicYea
     accountStatement.find(".accountStatementAccountStatementFullName").attr(accountID);
     accountStatement.find(".accountStatementAccountStatementAcademicYear").text(academicYear);
     var totalAccountStatementListAmount = 0;
+    var totalAccountStatementListRefundAmount = 0;
     var total2 = 0;
     //general
     if(courseAnnualFeeList){
@@ -211,7 +213,11 @@ accountStatement.addAccountStatement = function(accountID, fullName, academicYea
     //selected
     if(adjustmentFeeList){
         for(var x = 0; x < adjustmentFeeList.length;x++){
-            totalAccountStatementListAmount += adjustmentFeeList[x]["amount"]*1;
+            if(adjustmentFeeList[x]["assessment_item_ID"]*1 !== 248){
+                totalAccountStatementListAmount += adjustmentFeeList[x]["amount"]*1;
+            }else{
+                totalAccountStatementListRefundAmount += adjustmentFeeList[x]["amount"]*1;
+            }
         }
     }
     accountStatement.find(".accountStatementAccountStatementTotalAnnualFee").text((totalAccountStatementListAmount).toFixed(2));
@@ -231,7 +237,8 @@ accountStatement.addAccountStatement = function(accountID, fullName, academicYea
         }
     }
     accountStatement.find(".accountStatementAccountStatementTotalAmountPaid").text((totalAmountPaid).toFixed(2));
-    accountStatement.find(".accountStatementAccountStatementTotalRemainingBalance").text((totalAccountStatementListAmount - totalAmountPaid).toFixed(2));
+    accountStatement.find(".accountStatementAccountStatementRefundAmount").text((totalAccountStatementListRefundAmount*-1).toFixed(2));
+    accountStatement.find(".accountStatementAccountStatementTotalRemainingBalance").text((totalAccountStatementListAmount - totalAmountPaid + totalAccountStatementListRefundAmount).toFixed(2));
     $("#accountStatementAccountStatementPrint .accountStatementAccountStatementPrintList").append(accountStatement);
 };
 </script>

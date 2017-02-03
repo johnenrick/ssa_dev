@@ -29,7 +29,8 @@
             var filter = {
                 start_datetime :(new Date(year[0], 5, 1, 0,0,0)).getTime()/1000,//june first day am
                 end_datetime : (new Date("20"+year[1], 4, 0, 23,59,0)).getTime()/1000,//april last day pm
-                account_ID: $(this).attr("account_ID")
+                account_ID: $(this).attr("account_ID"),
+                location : 1
             };
             $("#studentAttendanceModal .monthlyAttendance .panel-body .row").empty();
             
@@ -63,12 +64,53 @@
             ($("input[name=section_description]").val() !== "") ? filter.section_description = $("input[name=section_description]").val() : null;
             $("#exportAttendance").hide();
             $("#attendanceSummaryTable tbody").empty();
+            $("#attendanceSummaryTable tbody").append("<tr><td>Loading</td></tr>")
             $.post(systemApplication.url.apiUrl + "c_class_section/retrieveClassSection", filter,function(data){
                 var response = JSON.parse(data);
+                $("#attendanceSummaryTable tbody").empty();
                 if(!response["error"].length){
+                    var studentIDs = [];
+                    for(var x = 0; x < response["data"].length; x++){
+                        var row = $(".prototype .attendanceSummaryTableRow").clone();
+                        row.attr("account_ID", response["data"][x]["account_ID"]);
+                        row.find(".lastName").text(response["data"][x]["last_name"]);
+                        row.find(".firstName").text(response["data"][x]["first_name"]+" "+(response["data"][x]["middle_name"]).charAt(0)+".")
+                        $("#attendanceSummaryTable tbody").append(row);
+                        studentIDs.push(response["data"][x]["account_ID"]);
+                    }
                     
+                    var year = (systemApplication.academic_year_label[systemUtility.getCurrentAcademicYear()]).split("-");
+                    var filter = {
+                        start_datetime :(new Date(year[0], 5, 1, 0,0,0)).getTime()/1000,//june first day am
+                        end_datetime : (new Date("20"+year[1], 4, 0, 23,59,0)).getTime()/1000,//april last day pm
+                        block_student_ID : studentIDs,
+                        in_out : 1,
+                        location : 1
+                        
+                    };
+                    $.post(systemApplication.url.apiUrl+"c_student_log/retrieveStudentLog", filter, function(data){
+                       var response = JSON.parse(data); 
+                       if(!response["error"].length){
+                           var attendanceList = {};
+                           for(var x = 0; x < response["data"].length; x++){
+                                var log = new Date(response["data"][x]["datetime"]);
+                                if(typeof attendanceList[response["data"][x]["account_ID"]] === "undefined"){
+                                    attendanceList[response["data"][x]["account_ID"]] = {6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[], 1:[], 2:[], 3:[], 4:[]};
+                                }
+                                if($.inArray(log.getDate(), attendanceList[response["data"][x]["account_ID"]][log.getMonth()+1]) === -1){
+                                    attendanceList[response["data"][x]["account_ID"]][log.getMonth()+1].push(log.getDate());
+                                }
+                            }
+                            for(var accountID in attendanceList){
+                                for(var month in attendanceList[accountID]){
+                                    var monthCol = $("#attendanceSummaryTable tbody tr[account_ID="+accountID+"] .month"+month);
+                                    monthCol.text(attendanceList[accountID][month].length);
+                                }
+                            }
+                       }
+                    });
                 }
-            })
+            });
         });
         $("#exportAttendance").click(function(){
             var filename = $("#studentAttendanceTable tbody tr:first-child td:last-child").text();
@@ -76,7 +118,6 @@
         });
     });
     studentAttendance.showPortalReport = function(response){
-       
         if(!response["error"].length){
             for(var x = 0; x < response["data"].length; x++){
                 var row = $(".prototype .studentAttendanceRow").clone();
