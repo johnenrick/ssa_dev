@@ -55,6 +55,7 @@
             });
         });
         $("#openAttendanceSummary").click(function(){
+            console.log("hello");
             $("#attendanceSummaryModal").modal("show");
             var filter = {
                 school_year : systemUtility.getCurrentAcademicYear()
@@ -109,6 +110,7 @@
                             }
                        }
                     });
+                    $("#exportAttendance").show();
                 }
             });
         });

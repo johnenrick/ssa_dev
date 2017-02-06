@@ -5,14 +5,13 @@
         <group>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/guidance/controllers/c_guidance.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/guidance/views/student_attendance_script.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/teller_transaction.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/controllers/c_student_log.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/account_statement.php</file>
+            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/portal/views/header_page_script.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/teller_transaction_script.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/account_statement_script.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/portal/views/header_page_script.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/models/m_student_log.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/guidance/views/student_attendance.php</file>
+            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/models/m_student_log.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/controllers/c_student_attendance.php</file>
         </group>
     </open-files>

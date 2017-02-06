@@ -193,6 +193,7 @@
             <td class="month1">0</td>
             <td class="month2">0</td>
             <td class="month3">0</td>
+            <td class="month4">0</td>
         </tr>
     </table>
 </div>
