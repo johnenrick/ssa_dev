@@ -5,7 +5,6 @@
         studentAttendance.studentAttendanceTable = $("#studentAttendanceTable").apipagination({
             apiUrl: systemApplication.url.apiUrl + "c_class_section/retrieveClassSection",
             customFilterGenerator: function () {
-                
                 return {
                     type: 1,
                     school_year : systemUtility.getCurrentAcademicYear()
@@ -55,7 +54,6 @@
             });
         });
         $("#openAttendanceSummary").click(function(){
-            console.log("hello");
             $("#attendanceSummaryModal").modal("show");
             var filter = {
                 school_year : systemUtility.getCurrentAcademicYear()
@@ -79,7 +77,6 @@
                         $("#attendanceSummaryTable tbody").append(row);
                         studentIDs.push(response["data"][x]["account_ID"]);
                     }
-                    
                     var year = (systemApplication.academic_year_label[systemUtility.getCurrentAcademicYear()]).split("-");
                     var filter = {
                         start_datetime :(new Date(year[0], 5, 1, 0,0,0)).getTime()/1000,//june first day am
@@ -87,13 +84,12 @@
                         block_student_ID : studentIDs,
                         in_out : 1,
                         location : 1
-                        
                     };
                     $.post(systemApplication.url.apiUrl+"c_student_log/retrieveStudentLog", filter, function(data){
-                       var response = JSON.parse(data); 
-                       if(!response["error"].length){
-                           var attendanceList = {};
-                           for(var x = 0; x < response["data"].length; x++){
+                        var response = JSON.parse(data); 
+                        if(!response["error"].length){
+                            var attendanceList = {};
+                            for(var x = 0; x < response["data"].length; x++){
                                 var log = new Date(response["data"][x]["datetime"]);
                                 if(typeof attendanceList[response["data"][x]["account_ID"]] === "undefined"){
                                     attendanceList[response["data"][x]["account_ID"]] = {6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[], 1:[], 2:[], 3:[], 4:[]};
@@ -108,7 +104,7 @@
                                     monthCol.text(attendanceList[accountID][month].length);
                                 }
                             }
-                       }
+                        }
                     });
                     $("#exportAttendance").show();
                 }
