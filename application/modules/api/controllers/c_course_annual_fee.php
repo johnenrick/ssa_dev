@@ -54,12 +54,36 @@ class c_course_annual_fee extends API_Controller {
         $response = $this->generateResponse();
         $result = $this->m_course_annual_fee->retrieveCourseAnnualFee(
                 $this->input->post("retrieve_type"), // 1 - search, 0 - match
-                $this->input->post("limit"), $this->input->post("offset"), $this->input->post("sort"), $this->input->post("ID"), $this->input->post("type"), $this->input->post("course_ID"), $this->input->post("year_level"), $this->input->post("academic_year"), $this->input->post("assessment_item_ID"), $this->input->post("description"), $this->input->post("amount"), $this->input->post("assessment_item_description"), $this->input->post("assessment_type_ID")
+                $this->input->post("limit"), 
+                $this->input->post("offset"), 
+                $this->input->post("sort"), 
+                $this->input->post("ID"), 
+                $this->input->post("type"), 
+                $this->input->post("course_ID"), 
+                $this->input->post("year_level"), 
+                $this->input->post("academic_year"), 
+                $this->input->post("assessment_item_ID"), 
+                $this->input->post("description"), 
+                $this->input->post("amount"), 
+                $this->input->post("assessment_item_description"), 
+                $this->input->post("assessment_type_ID")
         );
         if ($this->input->post("limit")) {
             $response["result_count"] = count($this->m_course_annual_fee->retrieveCourseAnnualFee(
-                            $this->input->post("retrieve_type"), // 1 - search, 0 - match
-                            0, 0, $this->input->post("sort"), $this->input->post("ID"), $this->input->post("type"), $this->input->post("course_ID"), $this->input->post("year_level"), $this->input->post("academic_year"), $this->input->post("assessment_item_ID"), $this->input->post("description"), $this->input->post("amount"), $this->input->post("assessment_item_description"), $this->input->post("assessment_type_ID")
+                    $this->input->post("retrieve_type"), // 1 - search, 0 - match
+                    0, 
+                    0, 
+                    $this->input->post("sort"), 
+                    $this->input->post("ID"), 
+                    $this->input->post("type"), 
+                    $this->input->post("course_ID"), 
+                    $this->input->post("year_level"), 
+                    $this->input->post("academic_year"), 
+                    $this->input->post("assessment_item_ID"), 
+                    $this->input->post("description"), 
+                    $this->input->post("amount"), 
+                    $this->input->post("assessment_item_description"), 
+                    $this->input->post("assessment_type_ID")
             ));
         }
         if ($result) {
@@ -257,22 +281,7 @@ class c_course_annual_fee extends API_Controller {
                     $this->input->post("academic_year"), 
                     NULL, NULL, NULL, NULL, $this->input->post("assessment_type_ID")
             );
-            $schoolFees2 = false; /* /*$this->m_course_annual_fee->retrieveCourseAnnualFee(
-              0, // 1 - search, 0 - match
-              0,
-              0,
-              $this->input->post("sort"),
-              NULL,
-              1,
-              $accountDetail["course_ID"],
-              "0",
-              $this->input->post("academic_year"),
-              NULL,
-              NULL,
-              NULL,
-              NULL,
-              $this->input->post("assessment_type_ID")
-              ); */
+            $schoolFees2 = false; 
             if ($schoolFees1 && $schoolFees2) {
                 $schoolFees = array_merge($schoolFees1, $schoolFees2);
             } else if ($schoolFees1) {
@@ -281,7 +290,14 @@ class c_course_annual_fee extends API_Controller {
                 $schoolFees = $schoolFees2;
             }
             $selectedFees = $this->m_course_annual_fee->retrieveCourseAnnualFeeSelectedAccount(
-                    0, 0, 0, $this->input->post("sort"), NULL, $this->input->post("account_ID"), NULL, $this->input->post("academic_year")
+                    0, 
+                    0, 
+                    0, 
+                    $this->input->post("sort"), 
+                    NULL, 
+                    $this->input->post("account_ID"), 
+                    NULL, 
+                    $this->input->post("academic_year")
             );
             $response["data"]["general_fee"] = $schoolFees;
             $response["data"]["adjustment_fee"] = $selectedFees;
@@ -289,7 +305,29 @@ class c_course_annual_fee extends API_Controller {
             
         }
         $response["data"]["ledger"] = $this->m_account_payment->retrieveAccountPaymentAssessmentItem(
-                NULL, NULL, NULL, NULL, NULL, $this->input->post("account_ID"), NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, $this->input->post("start_datetime"), $this->input->post("end_datetime"), NULL, $this->input->post("ledger_assessment_type_ID"), NULL, $this->input->post("payment_academic_year")
+                NULL, 
+                NULL, 
+                NULL, 
+                NULL, 
+                NULL, 
+                $this->input->post("account_ID"), 
+                NULL, 
+                NULL, 
+                NULL, 
+                NULL, 
+                NULL, 
+                NULL, 
+                2, 
+                NULL, 
+                NULL, 
+                NULL, 
+                NULL, 
+                $this->input->post("start_datetime"), 
+                $this->input->post("end_datetime"), 
+                NULL, 
+                $this->input->post("ledger_assessment_type_ID"), 
+                NULL, 
+                $this->input->post("payment_academic_year")
         );
         if (!$accountDetail && !$response["data"]["ledger"]) {
             $response["error"][] = array(

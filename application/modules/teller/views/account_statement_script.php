@@ -206,8 +206,12 @@ accountStatement.addAccountStatement = function(accountID, fullName, academicYea
     //general
     if(courseAnnualFeeList){
         for(var x = 0; x < courseAnnualFeeList.length;x++){
-            totalAccountStatementListAmount += courseAnnualFeeList[x]["amount"]*1;
-            total2+=courseAnnualFeeList[x]["amount"]*1;
+            if(courseAnnualFeeList[x]["assessment_type_ID"]*1 === 136){
+                totalAccountStatementListRefundAmount += courseAnnualFeeList[x]["amount"]*1;
+            }else{
+                totalAccountStatementListAmount += courseAnnualFeeList[x]["amount"]*1;
+                total2+=courseAnnualFeeList[x]["amount"]*1;
+            }
         }
     }
     //selected

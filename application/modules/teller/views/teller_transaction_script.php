@@ -147,7 +147,7 @@ $(document).ready(function(){
         $("#tellerTransactionPaye"+selector+"IdentificationNumber").text($(this).parent().parent().find(".tellerTransactionUserSelectionListIdentificationNumber").text());
         $("#tellerTransactionPaye"+selector+"FullName").text($(this).parent().parent().find(".tellerTransactionUserSelectionListFullName").text());
         $("#tellerTransactionPaye"+selector+"Information").text($(this).parent().parent().attr("account_information"));
-        
+        $("#tellerTransactionPaye"+selector+"Information").attr("year_level", $(this).parent().parent().attr("year_level"));
         $("#tellerTransactionPayerLastName").text("");
         $("#tellerTransactionPayerFirstName").text("");
         $("#tellerTransactionPayerMiddleName").text("");
@@ -157,6 +157,7 @@ $(document).ready(function(){
             $("#tellerTransactionPayeeIdentificationNumber").text($(this).parent().parent().find(".tellerTransactionUserSelectionListIdentificationNumber").text());
             $("#tellerTransactionPayeeFullName").text($(this).parent().parent().find(".tellerTransactionUserSelectionListFullName").text());
             $("#tellerTransactionPayeeInformation").text($(this).parent().parent().attr("account_information"));
+            $("#tellerTransactionPayeeInformation").attr("year_level", $(this).parent().parent().attr("year_level"));
             $("#tellerTransactionPayeeLastName").text("");
             $("#tellerTransactionPayeeFirstName").text("");
             $("#tellerTransactionPayeeMiddleName").text("");
@@ -393,14 +394,31 @@ tellerTransaction.showTransaction = function(orderReceiptNumber){
     });
 };
 tellerTransaction.showPrivilege = function(accountID){
+    $("#tellerTransactionAdjustments").empty();
     
     $.post(systemApplication.url.apiUrl+"c_course_annual_fee/retrieveCourseAnnualFeeSelectedAccount", {account_ID:accountID, academic_year:$("#tellerTransactionAcademicYear").val() }, function(data){
         var response = JSON.parse(data);
-        $("#tellerTransactionAdjustments").empty();
         if(!response["error"].length){
             for(var x = 0; x < response["data"].length; x++){
                 $("#tellerTransactionAdjustments").append((response["data"][x]["description"]).toUpperCase()+"<br>");
             }
+        }
+        //retrieve privilige by grade
+        if($("#tellerTransactionPayerInformation").attr("year_level")*1){
+            var condition = {
+                year_level : $("#tellerTransactionPayerInformation").attr("year_level"),
+                assessment_type_ID : 136, 
+                academic_year:$("#tellerTransactionAcademicYear").val() 
+
+            };
+            $.post(systemApplication.url.apiUrl+"c_course_annual_fee/retrieveCourseAnnualFee", condition, function(data){//retrievePriviliges by grade
+                var response = JSON.parse(data);
+                if(!response["error"].length){
+                    for(var x = 0; x < response["data"].length; x++){
+                        $("#tellerTransactionAdjustments").append((response["data"][x]["description"]).toUpperCase() +"<br>");
+                    }
+                }
+            });
         }
     });
 };
@@ -450,10 +468,10 @@ tellerTransaction.showAccountStatement = function(accountID){
         academic_year : systemUtility.getCurrentAcademicYear()
     };
     if(($("#tellerTransactionAcademicYear").val()*1 <= 1428336000)){//if school year 2015-16
-            dataFilter.start_datetime = $("#tellerTransactionAcademicYear").val();
-            dataFilter.end_datetime = $("#tellerTransactionAcademicYear").find("option:nth-child("+($("#tellerTransactionAcademicYear").find("option:selected").index()+2)+")").val();
+        dataFilter.start_datetime = $("#tellerTransactionAcademicYear").val();
+        dataFilter.end_datetime = $("#tellerTransactionAcademicYear").find("option:nth-child("+($("#tellerTransactionAcademicYear").find("option:selected").index()+2)+")").val();
     }else{
-            dataFilter.payment_academic_year = $("#tellerTransactionAcademicYear").val();
+        dataFilter.payment_academic_year = $("#tellerTransactionAcademicYear").val();
     }
     dataFilter.ledger_assessment_type_ID = 133;//tuition only
     $.post(systemApplication.url.apiUrl+"c_course_annual_fee/retrieveAccountStatement", dataFilter, function(data){
@@ -464,14 +482,18 @@ tellerTransaction.showAccountStatement = function(accountID){
             var total2 = 0;
             //general
             for(var x = 0; x < response["data"]["general_fee"].length;x++){
-                totalAccountStatementListAmount += response["data"]["general_fee"][x]["amount"]*1;
-                total2+=response["data"]["general_fee"][x]["amount"]*1;
+                if(response["data"]["general_fee"][x]["assessment_type_ID"]*1 === 136){
+                    totalRefundAmount += response["data"]["general_fee"][x]["amount"]*1;
+                }else{
+                    totalAccountStatementListAmount += response["data"]["general_fee"][x]["amount"]*1;
+                    total2+=response["data"]["general_fee"][x]["amount"]*1;
+                }
             }
             //selected
             if(response["data"]["adjustment_fee"]){
                 for(var x = 0; x < response["data"]["adjustment_fee"].length;x++){
                     
-                    if(response["data"]["adjustment_fee"][x]["assessment_item_ID"]*1 !== 248){
+                    if(response["data"]["adjustment_fee"][x]["assessment_item_ID"]*1 !== 248 && response["data"]["adjustment_fee"][x]["assessment_item_ID"]*1 !== 270){
                         totalAccountStatementListAmount += response["data"]["adjustment_fee"][x]["amount"]*1;
                     }else{
                         totalRefundAmount += response["data"]["adjustment_fee"][x]["amount"]*1;
@@ -898,6 +920,7 @@ tellerTransaction.addUserSelectionList = function(data){
         for(var x = 0; x < response["data"].length; x++ ){
             var newRow = $(".prototype").find(".tellerTransactionUserSelectionListRow").clone();
             newRow.attr("account_id", response["data"][x]["account_ID"]);
+            newRow.attr("year_level", response["data"][x]["section_year_level"]);
             newRow.attr("account_information", (response["data"][x]["account_type_ID"]*1 === 4 && response["data"][x]["section_ID"]*1 !== 0) ? (response["data"][x]["course_code"]+" "+response["data"][x]["section_year_level"]+" - "+response["data"][x]["secion_description"]).toUpperCase() : (response["data"][x]["account_type_description"]).toUpperCase());
             newRow.find(".tellerTransactionUserSelectionListIdentificationNumber").text(response["data"][x]["identification_number"]);
             newRow.find(".tellerTransactionUserSelectionListFullName").text((
