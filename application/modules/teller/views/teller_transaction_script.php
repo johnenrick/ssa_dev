@@ -398,6 +398,7 @@ tellerTransaction.showPrivilege = function(accountID){
     
     $.post(systemApplication.url.apiUrl+"c_course_annual_fee/retrieveCourseAnnualFeeSelectedAccount", {account_ID:accountID, academic_year:$("#tellerTransactionAcademicYear").val() }, function(data){
         var response = JSON.parse(data);
+        console.log(response["data"]);
         if(!response["error"].length){
             for(var x = 0; x < response["data"].length; x++){
                 $("#tellerTransactionAdjustments").append((response["data"][x]["description"]).toUpperCase()+"<br>");
@@ -408,11 +409,13 @@ tellerTransaction.showPrivilege = function(accountID){
             var condition = {
                 year_level : $("#tellerTransactionPayerInformation").attr("year_level"),
                 assessment_type_ID : 136, 
-                academic_year:$("#tellerTransactionAcademicYear").val() 
+                academic_year:$("#tellerTransactionAcademicYear").val(),
+                type : 1
 
             };
             $.post(systemApplication.url.apiUrl+"c_course_annual_fee/retrieveCourseAnnualFee", condition, function(data){//retrievePriviliges by grade
                 var response = JSON.parse(data);
+                console.log(response["data"]);
                 if(!response["error"].length){
                     for(var x = 0; x < response["data"].length; x++){
                         $("#tellerTransactionAdjustments").append((response["data"][x]["description"]).toUpperCase() +"<br>");
@@ -483,6 +486,7 @@ tellerTransaction.showAccountStatement = function(accountID){
             //general
             for(var x = 0; x < response["data"]["general_fee"].length;x++){
                 if(response["data"]["general_fee"][x]["assessment_type_ID"]*1 === 136){
+                    console.log(response["data"]["general_fee"][x]["description"])
                     totalRefundAmount += response["data"]["general_fee"][x]["amount"]*1;
                 }else{
                     totalAccountStatementListAmount += response["data"]["general_fee"][x]["amount"]*1;
