@@ -5,8 +5,8 @@
         <group>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/teller_transaction_script.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/teller/views/account_statement_script.php</file>
-            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/controllers/c_course_annual_fee.php</file>
             <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/models/m_account_payment.php</file>
+            <file>file:/C:/xampp/htdocs/ssa_dev/application/modules/api/controllers/c_course_annual_fee.php</file>
         </group>
     </open-files>
 </project-private>
